@@ -184,6 +184,8 @@
                     "imgs":"Bird.png",
                 }
             }
+           
+            
             
             ]
             ,"move":[
@@ -230,7 +232,7 @@
     };
       bgimage.src = obj.backgroudImg.imgae;
 
-      var pics=[grassImg=new Image(),steamImg=new Image(),treeleaves=new Image(),clouds=new Image(),birdImg=new Image()];
+      var pics=[grassImg=new Image(),steamImg=new Image(),treeleaves=new Image(),clouds=new Image(),birdImg=new Image() ];
       var color=[greencolor=new Image(),pinkcolor=new Image(),redcolor=new Image(),yellowcolor=new Image()];
       var ob=[];
       console.log(pics.length);
@@ -258,6 +260,7 @@
                 if(count==5)
                 {
                     Move();
+                    spin();
                 }
             });
         };
@@ -285,8 +288,10 @@
       
         tw[0].play();
         tw[1].play();
-
+        
+       
       }
+     
       for(let j=0;j<4;j++)
         {
         color[j].onload=function()
