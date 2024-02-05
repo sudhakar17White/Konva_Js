@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+
+      var stage = new Konva.Stage({
+        container: 'container',
+        width: width,
+        height: height,
+      });
+      
+
+      var layer1 = new Konva.Layer();
+
+      var reoval=new Konva.Ellipse({
+        x: 790,
+        y: 120,
+        radiusX: 100,
+        radiusY: 50,
+        fill: 'white',
+        stroke: 'black',
+        strokeWidth: 4,
+        
+
+      });
+      layer1.add(reoval);
+      var oval = new Konva.Ellipse({
+        x: 230,
+        y: 120,
+        radiusX: 100,
+        radiusY: 50,
+        fill: 'yellow',
+        stroke: 'black',
+        strokeWidth: 4,
+        draggable:true,
+      });
+      layer1.add(oval);
+     
+      var reccheck=new Konva.Rect({
+        x: 20,
+        y: 185,
+        width:100,
+        height:50,
+        fill: 'white',
+        stroke: 'black',
+        strokeWidth: 4,
+        
+      });
+
+      layer1.add(reccheck);
+      var rect1 = new Konva.Rect({
+        x: 550,
+        y: 475,
+        width: 100,
+        height: 50,
+        fill: 'green',
+        stroke: 'black',
+        strokeWidth: 4,
+        draggable:true,
+      });
+      layer1.add(rect1);
+      
+      var reccricle=new Konva.Circle({
+        x:320,
+        y:475,
+        radius:40,
+        fill: 'white',
+        stroke: 'black',
+        strokeWidth: 4,
+        
+      });
+      layer1.add(reccricle);
+      var crc=new Konva.Circle({
+        x:290,
+        y:275,
+        radius:40,
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 4,
+        draggable:true,
+      });
+
+      layer1.add(crc);
+      
+      var startTxt = new Konva.Text({
+      x: 700,
+      y: 334,
+      text: '',
+      fontSize: 50,
+      fontFamily: 'Calibri',
+      fill: 'green'
+    });
+    layer1.add(startTxt);
+
+        let lr=0;
+        rect1.on('dragend', function() {
+        console.log(this.getX(),this.getX(),lr);
+         if((reccheck.getX()<=rect1.getX())&&(reccheck.getY()>=rect1.getY()))
+         {
+            
+            rect1.setDraggable(false);
+            rect1.setFill("blue");
+            lr++;
+            startTxt.setText(lr);
+         }
+         else
+         {
+            rect1.setX(550);
+            rect1.setY(475);
+         }
+
+        });
+
+
+
+
+
+
+
+
+      crc.on('dragend', function(){
+        console.log(this.getX(), this.getY(),lr);
+        if((reccricle.getX()>=crc.getX())&&((reccricle.getY())>=crc.getY()))
+        {   
+            crc.setDraggable(false);
+            crc.setFill("blue");
+            lr++;
+
+            startTxt.setText(lr);
+        }
+        else
+        {
+           crc.setX(290);
+           crc.setY(275);
+        }
+      });
+      oval.on('dragend',function(){
+        console.log(this.getX(),this.getY());
+        if((reoval.getX()<=oval.getX())&&(reoval.getY()>=oval.getY()))
+        {
+            oval.setDraggable(false);
+            oval.setFill("blue");
+            lr++;
+
+            startTxt.setText(lr);
+        }
+        else
+        {
+            oval.setX(230);
+            oval.setY(120);
+        }
+      });
+      
+      
+      stage.add(layer1);
+
+    </script>
+</body>
+</html>

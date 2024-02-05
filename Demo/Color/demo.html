@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/konva@9.3.2/konva.min.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+      var obj={
+            "backgroudImg":{
+                "x":0,
+                "y":0,
+                "imgae":"Bg.png",
+            },
+            "window":{
+                "width":window.innerWidth, 
+                "height":window.innerHeight,
+            }
+            ,
+            "color":{
+                "green":{
+                    "x":1090,
+                    "y":70,
+                    "image":"Green.png",
+                    "width":50,
+                    "height":50,
+                    "cl":"green",
+                    "r":120,
+                    "g":220,
+                    "b":23,
+                },
+                "pink":{
+                    "x":1090,
+                    "y":140,
+                    "image":"Pink.png",
+                    "width":50,
+                    "height":50,
+                    "cl":"pink",
+                    "r":240,
+                    "g":53,
+                    "b":218,
+                },
+                "red":{
+                    "x":1090,
+                    "y":210,
+                    "image":"Red.png",
+                    "width":50,
+                    "height":50,
+                    "cl":"red",
+                    "r":245,
+                    "g":27,
+                    "b":27,
+                }
+                ,
+                "yellow":{
+                    "x":1090,
+                    "y":280,
+                    "image":"Yellow.png",
+                    "width":50,
+                    "height":50,
+                    "cl":"yellow",
+                    "r":252,
+                    "g":186,
+                    "b":3,
+                }
+            }
+            ,"shape":
+            {
+                "rect":{
+                    "x":30,
+                    "y":100,
+                    "width":100,
+                    "height":50,
+                }
+            },
+            "im":[
+                {
+                    "ob":{
+                        "x":1090,
+                    "y":70,
+                    "image":"Green.png",
+                    "width":50,
+                    "height":50,
+                    "cl":"green",
+                    "r":120,
+                    "g":220,
+                    "b":23,
+                    }
+                },
+                {
+                     "ob":{
+                        "x":1090,
+                    "y":140,
+                    "image":"Pink.png",
+                    "width":50,
+                    "height":50,
+                    "cl":"pink",
+                    "r":240,
+                    "g":53,
+                    "b":218,
+                     }
+                }
+                ,
+                {
+                    "ob":
+                    {
+                        "x":1090,
+                    "y":210,
+                    "image":"Red.png",
+                    "width":50,
+                    "height":50,
+                    "cl":"red",
+                    "r":245,
+                    "g":27,
+                    "b":27,
+                    }
+                }
+                ,
+                {
+                    "ob:":
+                    {
+                    "x":1090,
+                    "y":280,
+                    "image":"Yellow.png",
+                    "width":50,
+                    "height":50,
+                    "cl":"yellow",
+                    "r":252,
+                    "g":186,
+                    "b":3,   
+                    }
+                }
+            ]
+            ,
+            "img":[
+                {
+                "im":{
+                    
+                    "x":250,
+                    "y":420,
+                    "width":250,
+                    "height":210,
+                    "imgs":"Grass2.png",
+                }
+            },
+            {
+                "im":{
+                    "x":730,
+                    "y":240,
+                    "width":200,
+                    "height":400,
+                    "imgs":"Stem.png",
+                }
+            }
+                ,
+                {
+                "im":
+                {
+                    "x":640,
+                    "y":40,
+                    "width":350,
+                    "height":350,
+                    "imgs":"Treeleaves.png",
+                }
+            },
+                {"im":
+                {
+                    "x":50,
+                    "y":20,
+                    "width":290,
+                    "height":150,
+                    "imgs":"Cloud.png",
+                }
+            },
+            {
+                "im":
+                {
+                    "x":560,
+                    "y":320,
+                    "width":100,
+                    "height":150,
+                    "imgs":"Bird.png",
+                }
+            }
+            
+            ]
+            ,"move":[
+                {
+                    "m":
+                    {
+                        "x":400,
+                        "duration":10,
+                        "y":20,
+                    }
+                },
+                {
+                    "m":
+                    {
+                        "x":110,
+                        "y":130,
+                        "duration":15,
+                    }
+                }
+            ]
+        }
+        
+     var color="";
+      var stage = new Konva.Stage({
+        container: 'container',
+        width: obj.window.width,
+        height: obj.window.height,
+      });
+
+      var layer = new Konva.Layer();
+      stage.add(layer);
+      
+      var bgimage = new Image();
+      bgimage.onload = function () {
+        var bg = new Konva.Image({
+          x: obj.backgroudImg.x,
+          y: obj.backgroudImg.y,
+          image: bgimage,
+          width: obj.window.width,
+          height:obj.window.height,
+        });
+        
+        layer.add(bg);
+    };
+      bgimage.src = obj.backgroudImg.imgae;
+
+      var pics=[grassImg=new Image(),steamImg=new Image(),treeleaves=new Image(),clouds=new Image(),birdImg=new Image()];
+      var color=[greencolor=new Image(),pinkcolor=new Image(),redcolor=new Image(),yellowcolor=new Image()];
+      var ob=[];
+      console.log(pics.length);
+      var colors=["green","pink","red","yellow"];
+      let count=0;
+      for(let i=0;i<pics.length;i++)
+      {
+        console.log(i);
+        pics[i].onload=function()
+        {
+            var ar=new Konva.Image({
+                x:obj.img[i].im.x,
+                y:obj.img[i].im.y,
+                image:pics[i],
+                width:obj.img[i].im.width,
+                height:obj.img[i].im.height,
+            });
+            setup(ar);
+            layer.add(ar);
+            ob[i]=ar;
+            ar.on('click', function(){
+                check(ar,color);
+                count=count+1;
+                console.log(count);
+                if(count==5)
+                {
+                    Move();
+                }
+            });
+        };
+        pics[i].src=obj.img[i].im.imgs;
+        
+      }
+      console.log(ob);
+      function Move()
+      {
+        var mv=[ob[3],ob[4]];
+
+        var tw=[];
+        for(let i=0;i<2;i++)
+        {
+        
+        var tween = new Konva.Tween({
+            node: mv[i],
+            duration: obj.move[i].m.duration,
+            x: obj.move[i].m.x,
+            y:obj.move[i].m.y,
+            
+        });
+        tw[i]=tween;
+        }
+      
+        tw[0].play();
+        tw[1].play();
+
+      }
+      for(let j=0;j<4;j++)
+        {
+        color[j].onload=function()
+        {
+            console.log(obj.img[j].im.imgs);
+            var ar=new Konva.Image({
+                x:obj.im[j].ob.x,
+                y:obj.im[j].ob.y,
+                image:color[j],
+                width:obj.im[j].ob.width,
+                height:obj.im[j].ob.height,
+            });
+            layer.add(ar);
+            ar.on('click',function(){
+                color =colors[j];
+                console.log(color);
+                
+            });
+        };
+        color[j].src=obj.im[j].ob.image;
+        }
+    
+     function check(gr,color)
+      {
+        if(color=="green")
+            {
+                gr.red(obj.color.green.r);
+                gr.green(obj.color.green.g);
+                gr.blue(obj.color.green.b);
+            }
+            else if(color=="pink")
+            {
+                gr.red(obj.color.pink.r);
+                gr.green(obj.color.pink.g);
+                gr.blue(obj.color.pink.b);
+            }
+            else if(color=="red")
+            {
+                gr.red(obj.color.red.r);
+                gr.green(obj.color.red.g);
+                gr.blue(obj.color.red.b);
+            }
+            else if(color=="yellow")
+            {
+                gr.red(obj.color.yellow.r);
+                gr.green(obj.color.yellow.g);
+                gr.blue(obj.color.yellow.b);
+            }
+      }
+      function setup(gr)
+      {
+        gr.cache();
+        gr.red(255);
+        gr.green(255);
+        gr.blue(255);
+        gr.filters([Konva.Filters.RGB]);
+      }
+
+      
+    </script>
+</body>
+</html>
